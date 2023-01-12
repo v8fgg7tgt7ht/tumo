@@ -78,7 +78,7 @@ class Game {
     
      static highScores = []
     static balloons =[]
-    static score = 0
+    static score = 0;
     
     
     static addCommonBalloon(){
