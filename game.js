@@ -19,19 +19,19 @@ function draw() {
                 console.log("You've chosen 1");
             }
 
-            let ot = Math.random();
+            let randomNum = Math.random();
 
 
 
-            if (ot < 0.5) {
-                ot = "1";
+            if (randomNum < 0.5) {
+                randomNum = "1";
             } else {
-                ot = "2";
+                randomNum = "2";
             }
 
-            console.log("random number is " + ot + ".");
+            console.log("random number is " + randomNum + ".");
 
-            if (Prompt === ot) {
+            if (Prompt === randomNum) {
                 console.log('You win');
                 Game.balloons.length = 0
                 continue
@@ -70,7 +70,7 @@ function mousePressed() {
 
 class Game {
 
-    static highScores = []
+    static scoreList = []
     static balloons = []
     static score = 0;
 

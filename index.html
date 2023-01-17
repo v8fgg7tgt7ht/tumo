@@ -21,7 +21,7 @@
         background(136, 220, 166)
         let finalScore = Game.score
         let a = finalScore
-        Game.highScores.push(a)
+        Game.scoreList.push(a)
         Game.score = ''
         textSize(64)
         fill('white')
@@ -30,7 +30,7 @@
         textSize(34)
         text('Score: ' + finalScore, 200, 300)
         let l = 'All scores:'
-        let d = Game.highScores
+        let d = Game.scoreList
         document.getElementById("arrPrint").innerHTML = l
         document.getElementById("arddrPrint").innerHTML = d;
 
