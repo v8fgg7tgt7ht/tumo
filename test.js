@@ -1,8 +1,20 @@
 import express from 'express'
 const app = express()
 
-app.get('/', function (req, res) {
-    res.send('Hello World')
-})
+//app.use(express.static('.'))
 
-app.listen(3000)
+
+app.get("/name/search", function (req, res) {
+    let srch = req.params.srch;
+    res.redirect('http://google.com/search?q=' + srch)
+});
+
+app.get("/google", function (req, res) {
+
+    res.redirect('http://google.com')
+});
+
+
+app.listen(3000, () => {
+    console.log('++++++');
+});
