@@ -4,8 +4,22 @@ function setup() {
 }
 
 function draw() {
-
-    background('skyblue')
+    function gameOver() {
+        noLoop()
+        Game.balloons.length = 0;
+        background(136, 220, 166)
+        let finalScore = Game.score
+        let a = finalScore
+        Game.scoreList.push(a)
+        Game.score = ''
+        textSize(64)
+        fill('white')
+        textAlign(CENTER, CENTER)
+        text('Finish', 200, 200)
+        textSize(34)
+        text('Score: ' + finalScore, 200, 300)
+        background('skyblue')
+    }
 
     for (let balloon of Game.balloons) {
 
