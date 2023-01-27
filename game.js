@@ -1,25 +1,13 @@
+
+
 function setup() {
     createCanvas(500, 500);
     Game.addCommonBalloon()
 }
 
 function draw() {
-    function gameOver() {
-        noLoop()
-        Game.balloons.length = 0;
-        background(136, 220, 166)
-        let finalScore = Game.score
-        let a = finalScore
-        Game.scoreList.push(a)
-        Game.score = ''
-        textSize(64)
-        fill('white')
-        textAlign(CENTER, CENTER)
-        text('Finish', 200, 200)
-        textSize(34)
-        text('Score: ' + finalScore, 200, 300)
-        background('skyblue')
-    }
+
+    background('skyblue')
 
     for (let balloon of Game.balloons) {
 
@@ -33,19 +21,19 @@ function draw() {
                 console.log("You've chosen 1");
             }
 
-            let randomNum = Math.random();
+            let ot = Math.random();
 
 
 
-            if (randomNum < 0.5) {
-                randomNum = "1";
+            if (ot < 0.5) {
+                ot = "1";
             } else {
-                randomNum = "2";
+                ot = "2";
             }
 
-            console.log("random number is " + randomNum + ".");
+            console.log("random number is " + ot + ".");
 
-            if (Prompt === randomNum) {
+            if (Prompt === ot) {
                 console.log('You win');
                 Game.balloons.length = 0
                 continue
@@ -56,8 +44,13 @@ function draw() {
                 gameOver()
 
             }
+
+
+
         }
     }
+
+
 
     textSize(32)
     fill('black')
@@ -84,9 +77,9 @@ function mousePressed() {
 
 class Game {
 
-    static scoreList = []
+    static highScores = []
     static balloons = []
-    static score = 0;
+    static score = 0
 
 
     static addCommonBalloon() {
@@ -168,4 +161,3 @@ class AngryBalloon extends CommonBalloon {
         Game.score -= 10
     }
 }
-

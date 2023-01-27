@@ -15,7 +15,26 @@
     <pre id="arddrPrint"></pre>
 
     <script>
+      function gameOver() {
+        noLoop()
+        Game.balloons.length = 0
+        background(136, 220, 166)
+        let finalScore = Game.score
+        let a = finalScore
+        Game.highScores.push(a)
+        Game.score = ''
+        textSize(64)
+        fill('white')
+        textAlign(CENTER, CENTER)
+        text('Finish', 200, 200)
+        textSize(34)
+        text('Score: ' + finalScore, 200, 300)
+        let l = 'All scores:'
+        let d = Game.highScores
+        document.getElementById("arrPrint").innerHTML = l
+        document.getElementById("arddrPrint").innerHTML = d;
 
+      }
 
     </script>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.5.0/lib/p5.js"></script>
