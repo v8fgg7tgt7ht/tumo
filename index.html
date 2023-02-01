@@ -2,23 +2,42 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
 
 <body>
-    <h1>
-        Registration</h1>
-    <p>Enter your credentials, please</p>
-    <input type="text" name="" id="name" placeholder="name">
-    <input type="text" name="" id="surname" placeholder="surname">
-    <input type="text" name="" id="age" placeholder="age">
-    <input type="text" name="" id="email" placeholder="email">
-    <input type="text" name="" id="password" placeholder="password">
-    <input type="button" value="send" id="button">
-    <script src="registration.js"></script>
-</body>
+
+  <body>
+    <pre id="arrPrint"></pre>
+    <pre id="arddrPrint"></pre>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.5.0/lib/p5.js"></script>
+    <script>
+      function gameOver() {
+        noLoop()
+        Game.balloons.length = 0
+        background(136, 220, 166)
+        let finalScore = Game.score
+        let a = finalScore
+        Game.highScores.push(a)
+        Game.score = ''
+        textSize(64)
+        fill('white')
+        textAlign(CENTER, CENTER)
+        text('Finish', 200, 200)
+        textSize(34)
+        text('Score: ' + finalScore, 200, 300)
+
+
+
+      }
+
+    </script>
+
+
+    <script src="game.js"></script>
+  </body>
 
 </html>

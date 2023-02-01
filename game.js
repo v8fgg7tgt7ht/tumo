@@ -15,36 +15,8 @@ function draw() {
         balloon.move(Game.score);
 
         if (balloon.y <= balloon.size / 2 && balloon.color != 'black') {
-
-            let Prompt = prompt("choose 1 or 2")
-            if (Prompt === "1") {
-                console.log("You've chosen 1");
-            }
-
-            let ot = Math.random();
-
-
-
-            if (ot < 0.5) {
-                ot = "1";
-            } else {
-                ot = "2";
-            }
-
-            console.log("random number is " + ot + ".");
-
-            if (Prompt === ot) {
-                console.log('You win');
-                Game.balloons.length = 0
-                continue
-
-            } else {
-
-                console.log('You lose');
-                gameOver()
-
-            }
-
+            gameOver()
+            clearInterval(interval)
 
 
         }
@@ -71,14 +43,29 @@ function mousePressed() {
     if (!isLooping()) {
         loop()
         Game.score = 0;
+        interval = setInterval(() => {
+            Game.sendstatistics()
+        }, 5000);
     }
+
+
     Game.checkIfBalloonBurst()
 }
+
+
+
+let interval = setInterval(() => {
+    Game.sendstatistics()
+}, 5000);
 
 class Game {
 
     static highScores = []
     static balloons = []
+    static commonBurst = 0
+    static uniqBurst = 0
+    static angryBurst = 0
+    static commonBurst = 0
     static score = 0
 
 
@@ -107,6 +94,22 @@ class Game {
 
         }
         )
+    }
+
+    static sendstatistics() {
+        let statistics = {
+            commonBurst: this.commonBurst,
+            uniqBurst: this.uniqBurst,
+            angryBurst: this.angryBurst,
+            score: this.score
+        }
+        fetch('/statistics', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(statistics)
+        });
     }
 }
 
@@ -137,6 +140,7 @@ class CommonBalloon {
     burst(index) {
         Game.balloons.splice(index, 1)
         Game.score += 1
+        Game.commonBurst += 1
     }
 }
 
@@ -148,6 +152,7 @@ class UniqBalloon extends CommonBalloon {
     burst(index) {
         Game.balloons.splice(index, 1)
         Game.score += 10
+        Game.uniqBurst += 1
     }
 }
 
@@ -159,5 +164,6 @@ class AngryBalloon extends CommonBalloon {
     burst(index) {
         Game.balloons.splice(index, 1)
         Game.score -= 10
+        Game.angryBurst += 1
     }
 }
